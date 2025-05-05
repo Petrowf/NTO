@@ -32,13 +32,21 @@ ALBivbeslooce.
 #AcosbiLeolevB
 #AliceLovesBob
 
-alice_cipher = input()
-step = 3
-decrypted_alice = ['' for i in range(len(alice_cipher))]
-decrypted_alice[0] = alice_cipher[0]
+alice_cipher = input() # Ввод шифра
+step = 9 # Шаг между буквами
+decrypted_alice = '' # Строка под расшифрованное сообщения
 
-for i in range(1, len(alice_cipher)):
-    decrypted_alice[(i + step)%len(alice_cipher)] = alice_cipher[i]
-    step += 2
+# Декодирование Алисы
+i = 0 # Первая буква шифра равна первой букве сообщения
+while len(decrypted_alice) != len(alice_cipher):
+    decrypted_alice += alice_cipher[i]
+    i = (i + 9) % len(alice_cipher)
 
-print(''.join(decrypted_alice))
+# Код Боба
+bob_cipher = ''
+j = 0
+while len(bob_cipher) != len(decrypted_alice):
+    bob_cipher += decrypted_alice[j]
+    j = (j + 5) % len(decrypted_alice)
+
+print(bob_cipher)
